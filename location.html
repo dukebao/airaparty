@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aria's Birthday Location Details</title>
+  <style>
+    :root {
+      --cream: #fff8ef;
+      --peach: #ffd6c9;
+      --rose: #f49ca5;
+      --coral: #ef6f7a;
+      --lavender: #c8b6ff;
+      --ink: #4b3f3f;
+      --muted: #7b6868;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(255, 214, 201, 0.9), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(200, 182, 255, 0.46), transparent 32%),
+        linear-gradient(180deg, var(--cream), #fff);
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(920px, 100%);
+      margin: 0 auto;
+      padding: 28px 18px 48px;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, 0.82);
+      border-radius: 34px;
+      box-shadow: 0 24px 70px rgba(239, 111, 122, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      overflow: hidden;
+    }
+
+    .header {
+      padding: 34px 24px 24px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255, 214, 201, 0.62), rgba(255, 255, 255, 0.88));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      background: #fff2f4;
+      color: var(--coral);
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 18px 0 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 8vw, 4.6rem);
+      line-height: 1;
+      color: var(--coral);
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.6;
+    }
+
+    .content {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 12px 34px rgba(75, 63, 63, 0.07);
+      border: 1px solid rgba(239, 111, 122, 0.08);
+    }
+
+    .card.full {
+      grid-column: 1 / -1;
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      color: var(--coral);
+      font-size: 1.08rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .card ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .address {
+      font-size: 1.14rem;
+      color: var(--ink);
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .map-box {
+      width: 100%;
+      min-height: 260px;
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(244, 156, 165, 0.22), rgba(200, 182, 255, 0.22)),
+        #fff;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+      padding: 24px;
+      border: 1px dashed rgba(239, 111, 122, 0.35);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary {
+      background: var(--coral);
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(239, 111, 122, 0.30);
+    }
+
+    .secondary {
+      background: #fff2f4;
+      color: var(--coral);
+    }
+
+    .footer {
+      padding: 0 24px 26px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: 16px 12px 32px;
+      }
+
+      .panel {
+        border-radius: 28px;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="panel">
+      <header class="header">
+        <div class="eyebrow">Party details</div>
+        <h1>Location &amp; Helpful Info</h1>
+        <p class="subtitle">
+          Everything you need to know for Aria’s first birthday celebration.
+        </p>
+      </header>
+
+      <section class="content">
+        <article class="card">
+          <h2>Venue</h2>
+          <p class="address">
+            6087 Wilson Ave<br />
+            Burnaby, BC
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>When to arrive</h2>
+          <p>
+            The celebration starts at <strong>3:00 PM</strong>. Please feel free to arrive a little early to settle in,
+            say hello, and take photos before cake time.
+          </p>
+        </article>
+
+        <article class="card full">
+          <h2>Map</h2>
+          <div class="map-box">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.4930928080826!2d-123.01028219999999!3d49.2291398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548676f50b4e3e07%3A0xa0158099ba9cce91!2s6087%20Wilson%20Ave%2C%20Burnaby%2C%20BC%20V5H%202R5!5e0!3m2!1sen!2sca!4v1777864119287!5m2!1sen!2sca"
+              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <div class="button-row">
+            <a class="button primary" href="https://maps.app.goo.gl/4Pnx2GWaH6AJMWJG9" target="_blank"
+              rel="noopener">Open Google Maps</a>
+            <a class="button secondary" href="index.html">Back to Invitation</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Parking</h2>
+          <ul>
+            <li>Free street parking is available nearby.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>What to bring</h2>
+          <ul>
+            <li>Your smile and warm wishes for Aria.</li>
+            <li>No need to bring anything else unless you would like to.</li>
+            <li>If you have any dietary restrictions, please let us know in advance.</li>
+          </ul>
+        </article>
+
+        <article class="card full">
+          <h2>Questions?</h2>
+          <p>
+            Please message Steven if you need help finding the place, parking, or arrival instructions.
+          </p>
+        </article>
+      </section>
+
+      <footer class="footer">
+        We are so excited to celebrate this special day with you.
+      </footer>
+    </section>
+  </main>
+</body>
+
+</html>
