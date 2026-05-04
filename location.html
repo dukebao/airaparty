@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <!-- Prevent mobile browsers from rendering the page wider than the screen -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aria's Birthday Location Details</title>
   <style>
@@ -21,8 +22,16 @@
       box-sizing: border-box;
     }
 
+    html {
+      width: 100%;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
     body {
+      width: 100%;
       margin: 0;
+      overflow-x: hidden;
       font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--ink);
       background:
@@ -32,13 +41,20 @@
       min-height: 100vh;
     }
 
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
     .page {
-      width: min(920px, 100%);
+      width: 100%;
+      max-width: 920px;
       margin: 0 auto;
       padding: 28px 18px 48px;
     }
 
     .panel {
+      width: 100%;
       background: rgba(255, 255, 255, 0.82);
       border-radius: 34px;
       box-shadow: 0 24px 70px rgba(239, 111, 122, 0.16);
@@ -55,6 +71,7 @@
     .eyebrow {
       display: inline-flex;
       align-items: center;
+      max-width: 100%;
       padding: 8px 14px;
       background: #fff2f4;
       color: var(--coral);
@@ -63,33 +80,37 @@
       font-size: 0.85rem;
       letter-spacing: 0.07em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     h1 {
       margin: 18px 0 8px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.4rem, 8vw, 4.6rem);
-      line-height: 1;
+      font-size: clamp(2.15rem, 10vw, 4.6rem);
+      line-height: 1.02;
       color: var(--coral);
       letter-spacing: -0.04em;
+      overflow-wrap: break-word;
     }
 
     .subtitle {
       max-width: 620px;
       margin: 0 auto;
       color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.6;
+      font-size: clamp(1rem, 3.8vw, 1.08rem);
+      line-height: 1.55;
     }
 
     .content {
+      width: 100%;
       padding: 24px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
 
     .card {
+      min-width: 0;
       background: #fff;
       border-radius: 24px;
       padding: 22px;
@@ -112,6 +133,7 @@
       color: var(--muted);
       line-height: 1.65;
       margin: 0;
+      overflow-wrap: break-word;
     }
 
     .card ul {
@@ -120,7 +142,7 @@
     }
 
     .address {
-      font-size: 1.14rem;
+      font-size: clamp(1.05rem, 4vw, 1.14rem);
       color: var(--ink);
       font-weight: 800;
       line-height: 1.5;
@@ -128,23 +150,30 @@
 
     .map-box {
       width: 100%;
-      min-height: 260px;
       border-radius: 22px;
       overflow: hidden;
       background:
         linear-gradient(135deg, rgba(244, 156, 165, 0.22), rgba(200, 182, 255, 0.22)),
         #fff;
-      display: grid;
-      place-items: center;
-      text-align: center;
       color: var(--muted);
-      padding: 24px;
       border: 1px dashed rgba(239, 111, 122, 0.35);
     }
 
+    /*
+      The original iframe had fixed width="600" and height="450".
+      This wrapper makes the map responsive on phones.
+    */
+    .map-box iframe {
+      display: block;
+      width: 100%;
+      height: min(62vh, 420px);
+      min-height: 240px;
+      border: 0;
+    }
+
     .button-row {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-top: 18px;
     }
@@ -153,12 +182,16 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 0 20px;
+      min-height: 52px;
+      width: 100%;
+      padding: 0 18px;
       border-radius: 999px;
       text-decoration: none;
+      text-align: center;
       font-weight: 800;
+      line-height: 1.2;
       transition: transform 0.18s ease, box-shadow 0.18s ease;
+      touch-action: manipulation;
     }
 
     .button:hover {
@@ -180,24 +213,106 @@
       padding: 0 24px 26px;
       text-align: center;
       color: var(--muted);
+      line-height: 1.5;
     }
 
     @media (max-width: 760px) {
       .page {
-        padding: 16px 12px 32px;
+        padding: 14px 10px 30px;
       }
 
       .panel {
-        border-radius: 28px;
+        border-radius: 26px;
+      }
+
+      .header {
+        padding: 28px 18px 20px;
       }
 
       .content {
         grid-template-columns: 1fr;
+        padding: 16px;
+        gap: 14px;
+      }
+
+      .card {
+        border-radius: 20px;
         padding: 18px;
       }
 
+      .button-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        padding: 0 18px 24px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .page {
+        padding: 10px 8px 24px;
+      }
+
+      .panel {
+        border-radius: 22px;
+      }
+
+      .header {
+        padding: 24px 14px 18px;
+      }
+
+      .eyebrow {
+        font-size: 0.76rem;
+        padding: 7px 12px;
+      }
+
+      .content {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 16px;
+        border-radius: 18px;
+      }
+
+      .card h2 {
+        font-size: 1rem;
+      }
+
+      .card p,
+      .card li {
+        font-size: 0.96rem;
+        line-height: 1.58;
+      }
+
+      .map-box {
+        border-radius: 18px;
+      }
+
+      .map-box iframe {
+        height: 58vh;
+        min-height: 230px;
+      }
+
       .button {
-        width: 100%;
+        min-height: 54px;
+        font-size: 0.96rem;
+        padding: 0 14px;
+      }
+    }
+
+    @media (max-width: 340px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .subtitle {
+        font-size: 0.95rem;
+      }
+
+      .card {
+        padding: 14px;
       }
     }
   </style>
@@ -236,7 +351,9 @@
           <div class="map-box">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2605.4930928080826!2d-123.01028219999999!3d49.2291398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548676f50b4e3e07%3A0xa0158099ba9cce91!2s6087%20Wilson%20Ave%2C%20Burnaby%2C%20BC%20V5H%202R5!5e0!3m2!1sen!2sca!4v1777864119287!5m2!1sen!2sca"
-              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+              title="Google Map for 6087 Wilson Ave, Burnaby, BC"
+              allowfullscreen=""
+              loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
 
